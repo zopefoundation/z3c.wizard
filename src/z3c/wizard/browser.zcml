@@ -1,0 +1,72 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="z3c">
+
+  <z3c:macro
+      name="wizard"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-header"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-menu"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-form"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-subform"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-label"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-required-info"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-widgets"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-errors"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:macro
+      name="wizard-buttons"
+      template="wizard.pt"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+  <z3c:template
+      template="step.pt"
+      for=".interfaces.IStep"
+      layer="z3c.form.interfaces.IFormLayer"
+      />
+
+</configure>

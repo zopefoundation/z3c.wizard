@@ -1,0 +1,101 @@
+<div class="wizard"
+     metal:define-macro="wizard">
+  <metal:block define-slot="header">
+    <div class="header" metal:define-macro="wizard-header"
+         tal:content="view/wizard/label">label</div>
+  </metal:block>
+  <metal:block define-slot="menu">
+    <div class="wizardMenu" metal:define-macro="wizard-menu">
+      <span tal:repeat="item view/wizard/stepMenu"
+            tal:attributes="class item/class">
+          <span
+             tal:condition="item/selected"
+             tal:content="item/title" />
+          <a href=""
+             tal:condition="not:item/selected"
+             tal:attributes="href item/url"
+             tal:content="item/title" />
+      </span>
+    </div>
+  </metal:block>
+  <form action="." method="post" enctype="multipart/form-data" class="edit-form"
+        metal:define-macro="wizard-form"
+        tal:attributes="method view/method;
+                        enctype view/enctype;
+                        acceptCharset view/acceptCharset;
+                        accept view/accept;
+                        action view/action;
+                        name view/name;
+                        id view/id">
+    <metal:block define-macro="wizard-subform">
+      <div class="viewspace" metal:define-slot="viewspace">
+        <metal:block define-slot="label">
+          <div class="label" metal:define-macro="wizard-label"
+              tal:condition="view/label|nothing"
+              tal:content="view/label">
+            Form Label
+          </div>
+        </metal:block>
+        <metal:block define-slot="info">
+          <div class="required-info"
+               metal:define-macro="wizard-required-info"
+               tal:condition="view/showRequired">
+             <span class="required">*</span>
+             &ndash; required
+          </div>
+        </metal:block>
+        <metal:block define-slot="header">
+          <div class="status" tal:condition="view/status">
+            <div class="summary"
+                 i18n:translate=""
+                 tal:content="view/status">
+              Form status summary
+            </div>
+            <ul class="errors"
+                tal:condition="view/widgets/errors"
+                metal:define-macro="wizard-errors">
+              <li tal:repeat="error view/widgets/errors">
+                <tal:block condition="error/widget">
+                  <span tal:replace="error/widget/label" />:
+                </tal:block>
+                <span tal:replace="structure error/render">Error Type</span>
+              </li>
+            </ul>
+          </div>
+        </metal:block>
+        <div metal:define-slot="extra-info" tal:replace="nothing">
+        </div>
+        <div class="step" metal:define-slot="widget-rows">
+           <div metal:use-macro="macro:widget-rows" />
+        </div>
+        <metal:block define-slot="above-buttons">
+        </metal:block>
+        <metal:block define-slot="buttons">
+          <div metal:define-macro="wizard-buttons">
+            <div class="buttons">
+              <span class="back">
+                <input tal:repeat="action view/wizard/actions/backActions"
+                     tal:replace="structure action/render"
+                     />
+              </span>
+              <span class="step">
+                <input tal:repeat="action view/actions/values"
+                     tal:replace="structure action/render"
+                     />
+              </span>
+              <span class="forward">
+                <input tal:repeat="action view/wizard/actions/forwardActions"
+                     tal:replace="structure action/render"
+                     />
+              </span>
+            </div>
+          </div>
+        </metal:block>
+        <metal:block define-slot="bottom">
+        </metal:block>
+      </div>
+    </metal:block>
+  </form>
+</div>
+
+

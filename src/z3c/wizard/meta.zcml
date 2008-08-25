@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:meta="http://namespaces.zope.org/meta">
+
+  <meta:directives namespace="http://namespaces.zope.org/z3c">
+
+    <meta:directive
+        name="wizard"
+        schema=".zcml.IWizardDirective"
+        handler=".zcml.wizardDirective"
+        />
+
+    <meta:directive
+        name="wizardStep"
+        schema=".zcml.IWizardStepDirective"
+        handler=".zcml.wizardStepDirective"
+        />
+
+  </meta:directives>
+
+</configure>
+
