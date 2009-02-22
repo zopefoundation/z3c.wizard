@@ -25,7 +25,7 @@ setup (
     name='z3c.wizard',
     version='0.5.1dev',
     author = "Roger Ineichen and the Zope Community",
-    author_email = "zope3-dev@zope.org",
+    author_email = "zope-dev@zope.org",
     description = "Wizard based on z3c.form for for Zope3",
     long_description=(
         read('README.txt')
@@ -68,7 +68,6 @@ setup (
         'setuptools',
         'z3c.form',
         'z3c.formui',
-        'z3c.i18n',
         'z3c.pagelet',
         'zope.app.publisher',
         'zope.component',

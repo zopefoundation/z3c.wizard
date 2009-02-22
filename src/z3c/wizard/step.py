@@ -21,7 +21,6 @@ import zope.interface
 import zope.event
 import zope.lifecycleevent
 
-from z3c.i18n import MessageFactory as _
 from z3c.form.interfaces import IDataManager
 from z3c.form.interfaces import IActionHandler
 from z3c.form import button
@@ -30,6 +29,7 @@ from z3c.form import subform
 from z3c.formui import form
 from z3c.formui import layout
 from z3c.wizard import interfaces
+from z3c.wizard.interfaces import _
 
 
 def addStep(self, name, label=None, weight=None, available=None, **kws):
