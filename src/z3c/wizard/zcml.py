@@ -26,7 +26,6 @@ from zope.configuration.exceptions import ConfigurationError
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 from zope.app.publisher.browser import viewmeta
-from zope.app.component import metadirectives
 
 import z3c.pagelet.zcml
 
@@ -43,7 +42,7 @@ class IWizardDirective(z3c.pagelet.zcml.IPageletDirective):
     """
 
 
-class IWizardStepDirective(metadirectives.IBasicViewInformation):
+class IWizardStepDirective(zope.interface.Interface):
     """A directive to register a new wizard step.
 
     The wizard step directive also supports an undefined set of keyword 
@@ -73,6 +72,15 @@ class IWizardStepDirective(metadirectives.IBasicViewInformation):
         required=False
         )
 
+    layer = zope.configuration.fields.GlobalInterface(
+        title=u"The layer the view is in.",
+        description=u"""
+        A skin is composed of layers. It is common to put skin
+        specific views in a layer named after the skin. If the 'layer'
+        attribute is not supplied, it defaults to 'default'.""",
+        required=False,
+        )
+
     wizard = zope.configuration.fields.GlobalObject(
         title=u"Wizard",
         description=u"The wizard interface or class this step is for.",
@@ -86,6 +94,32 @@ class IWizardStepDirective(metadirectives.IBasicViewInformation):
         views that support other views.""",
         required=False,
         default=interfaces.IPagelet,
+        )
+
+    allowed_interface = zope.configuration.fields.Tokens(
+        title=u"Interface that is also allowed if user has permission.",
+        description=u"""
+        By default, 'permission' only applies to viewing the view and
+        any possible sub views. By specifying this attribute, you can
+        make the permission also apply to everything described in the
+        supplied interface.
+
+        Multiple interfaces can be provided, separated by
+        whitespace.""",
+        required=False,
+        value_type=zope.configuration.fields.GlobalInterface(),
+        )
+
+    allowed_attributes = zope.configuration.fields.Tokens(
+        title=u"View attributes that are also allowed if the user"
+                " has permission.",
+        description=u"""
+        By default, 'permission' only applies to viewing the view and
+        any possible sub views. By specifying 'allowed_attributes',
+        you can make the permission also apply to the extra attributes
+        on the view object.""",
+        required=False,
+        value_type=zope.configuration.fields.PythonIdentifier(),
         )
 
 

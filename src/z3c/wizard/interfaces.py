@@ -19,7 +19,6 @@ __docformat__ = "reStructuredText"
 import zope.interface
 import zope.schema
 import zope.location.interfaces
-from zope.contentprovider.interfaces import IContentProvider
 
 from z3c.i18n import MessageFactory as _
 from z3c.form import interfaces

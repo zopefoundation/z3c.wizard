@@ -18,7 +18,6 @@ __docformat__ = "reStructuredText"
 
 import zope.component
 import zope.interface
-from zope.cachedescriptors.property import Lazy
 from zope.publisher.interfaces import NotFound
 from zope.traversing.browser import absoluteURL
 

@@ -38,14 +38,12 @@ registered correctly.
   >>> from zope.configuration import xmlconfig
   >>> import zope.component
   >>> import zope.viewlet
-  >>> import zope.app.component
   >>> import zope.app.publisher.browser
   >>> import z3c.macro
   >>> import z3c.template
   >>> import z3c.formui
   >>> xmlconfig.XMLConfig('meta.zcml', zope.component)()
   >>> xmlconfig.XMLConfig('meta.zcml', zope.viewlet)()
-  >>> xmlconfig.XMLConfig('meta.zcml', zope.app.component)()
   >>> xmlconfig.XMLConfig('meta.zcml', zope.app.publisher.browser)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.macro)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.template)()
@@ -64,10 +62,11 @@ Let's define a sample content class:
 
   >>> import zope.interface
   >>> import zope.schema
+  >>> from zope.location.interfaces import ILocation
   >>> from zope.schema.fieldproperty import FieldProperty
-  >>> class IPerson(zope.interface.Interface):
+  >>> class IPerson(ILocation):
   ...     """Person interface."""
-  ...  
+  ... 
   ...     firstName = zope.schema.TextLine(title=u'First Name')
   ...     lastName = zope.schema.TextLine(title=u'Last Name')
   ...     street = zope.schema.TextLine(title=u'Street')
@@ -76,6 +75,8 @@ Let's define a sample content class:
   >>> class Person(object):
   ...     """Person content."""
   ...     zope.interface.implements(IPerson)
+  ... 
+  ...     __name__ = __parent__ = None
   ... 
   ...     firstName = FieldProperty(IPerson['firstName'])
   ...     lastName = FieldProperty(IPerson['lastName'])

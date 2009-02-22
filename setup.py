@@ -23,12 +23,17 @@ def read(*rnames):
 
 setup (
     name='z3c.wizard',
-    version='0.5.0dev',
+    version='0.5.0',
     author = "Roger Ineichen and the Zope Community",
     author_email = "zope3-dev@zope.org",
     description = "Wizard based on z3c.form for for Zope3",
     long_description=(
         read('README.txt')
+        + '\n\n' +
+        'Detailed Documentation\n'
+        '**********************\n'
+        + '\n\n' +
+        read('src', 'z3c', 'wizard', 'README.txt')
         + '\n\n' +
         read('CHANGES.txt')
         ),
@@ -44,7 +49,7 @@ setup (
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
         'Framework :: Zope3'],
-    url = 'http://cheeseshop.python.org/pypi/z3c.wizard',
+    url = 'http://pypi.python.org/pypi/z3c.wizard',
     packages = find_packages('src'),
     include_package_data = True,
     package_dir = {'':'src'},
@@ -65,14 +70,13 @@ setup (
         'z3c.formui',
         'z3c.i18n',
         'z3c.pagelet',
-        'zope.app.component',
         'zope.app.publisher',
         'zope.component',
         'zope.configuration',
-        'zope.contentprovider',
         'zope.event',
         'zope.interface',
         'zope.lifecycleevent',
+        'zope.location',
         'zope.publisher',
         'zope.schema',
         'zope.security',
