@@ -4,18 +4,19 @@ Wizard
 
 The goal of this package is to offer a form wizard. This implementation doesn't
 use a session. It just offers the wizard logic, the data which the wizard will
-changes or add is not a part of this implementation. If you liek to implement
+changes or adds is not a part of this implementation. If you like to implement
 some add wizard logic you probably need to use a session anf collect the values
-in the different wizard steps and create and add an object in the wizard
-doComplete or doFinish or the step doComplete method.
+in the different wizard steps and create and add an object in the wizard's
+``doComplete`` or ``doFinish`` or the step's ``doComplete`` method.
 
-All steps are available by it's own url. This allows us to cache each step if
+All steps are available by their own url. This allows us to cache each step if
 needed. Each step url is only available if we are allowed to access a step. If
 a step is accessible depends on the conditions of each step.
 
-Since steps are adapters, we can register steps for already existing wizards
-or we can also ovreride existing steps by register a UnavailableStep step which
-always will return False for the ``available`` argument.
+Since steps are adapters, we can register steps for already existing
+wizards or we can also override existing steps by registering a
+UnavailableStep step which always will return ``False`` for the
+``available`` argument.
 
 If the wizard is completed we get redirected to the confirmation page. If we
 access a completed wizard again, we will get redirected to the confirmation
@@ -32,8 +33,8 @@ We need to setup the form defaults first:
   >>> from z3c.form.testing import setupFormDefaults
   >>> setupFormDefaults()
 
-And load the formui confguration, which will make sure that all macros get
-registered correctly.
+And load the formui configuration, which will make sure that all macros get
+registered correctly:
 
   >>> from zope.configuration import xmlconfig
   >>> import zope.component
@@ -95,7 +96,7 @@ Step
 ----
 
 Let's define some steps. First use a step which knows how to store the name
-of a person.
+of a person:
 
   >>> from z3c.form import form
   >>> from z3c.form import field
@@ -116,7 +117,7 @@ Wizard
 ------
 
 Now we can define our ``Wizard`` including our steps. Steps are named
-adapters. Let's use the global method addStep for doing the step setup:
+adapters. Let's use the global method ``addStep`` for doing the step setup:
 
   >>> from z3c.wizard import wizard
   >>> class IPersonWizard(z3c.wizard.interfaces.IWizard):
@@ -134,8 +135,8 @@ adapters. Let's use the global method addStep for doing the step setup:
   ...             step.addStep(self, 'address', weight=2),
   ...             ]
 
-As next, we need to register our steps as named IStep adapters. This can be
-done by the z3c:wizardStep directive. Let's define our adapters with the
+As next, we need to register our steps as named ``IStep`` adapters. This can be
+done by the ``z3c:wizardStep`` directive. Let's define our adapters with the
 provideAdapter method for now:
 
   >>> import zope.interface
@@ -151,7 +152,7 @@ provideAdapter method for now:
   ...     z3c.wizard.interfaces.IStep, name='address')
 
 We need to support the div form layer for our request. This is needed for the
-form part we usein our steps. Because our steps are forms:
+form part we use in our steps. Because our steps are forms:
 
   >>> from z3c.formui.interfaces import IDivFormLayer
   >>> from zope.interface import alsoProvides
@@ -161,7 +162,7 @@ form part we usein our steps. Because our steps are forms:
 
 Now we can use our wizard. Our wizard will allways force to traverse to the
 current active step. This means the wizard provides a browserDefault which
-returns the default step instead of render the wizard as view. This allows us
+returns the default step instead of rendering the wizard as view. This allows us
 to use the step as an adapter discriminator for viewlets and other adapters
 like the menu implementation uses. The wizard acts like a dispatcher to the
 right step and not as a view itself.
@@ -179,7 +180,7 @@ Now get the default view (step) arguments from the wizard:
   >>> names
   ('person',)
 
-Now traverse to the step, update and render them:
+Now traverse to the step, update and render it:
 
   >>> personStep = obj.publishTraverse(request, names[0])
   >>> personStep.update()
@@ -308,7 +309,7 @@ As you can see we see our next step is the address step:
   >>> addressStep
   <AddressStep 'address'>
 
-Update and render them:
+Update and render it:
 
   >>> addressStep.update()
   >>> print addressStep.render()

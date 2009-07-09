@@ -29,11 +29,10 @@ setup (
     description = "Wizard based on z3c.form for for Zope3",
     long_description=(
         read('README.txt')
-        + '\n\n' +
-        'Detailed Documentation\n'
-        '**********************\n'
-        + '\n\n' +
+        + '\n\n.. contents::\n\n' +
         read('src', 'z3c', 'wizard', 'README.txt')
+        + '\n\n' +
+        read('src', 'z3c', 'wizard', 'zcml.txt')
         + '\n\n' +
         read('CHANGES.txt')
         ),

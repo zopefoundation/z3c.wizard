@@ -8,6 +8,8 @@ CHANGES
 - Remove dependency on z3c.i18n as it wasn't really used and we can
   easily recreate a message factory for the "z3c" domain.
 
+- Fixed tests to work with z3c.form 2.0.
+
 - Changed package's mailing list address to zope-dev at zope.org instead
   of the retired zope3-dev one.
 
