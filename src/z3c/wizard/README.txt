@@ -14,11 +14,11 @@ needed. Each step url is only available if we are allowed to access a step. If
 a step is accessible depends on the conditions of each step.
 
 Since steps are adapters, we can register steps for already existing wizards
-or we can also ovreride existing steps by register a UnavailableStep step which 
+or we can also ovreride existing steps by register a UnavailableStep step which
 always will return False for the ``available`` argument.
 
 If the wizard is completed we get redirected to the confirmation page. If we
-access a completed wizard again, we will get redirected to the confirmation 
+access a completed wizard again, we will get redirected to the confirmation
 page again.
 
 Now let's show how this works and setup our tests.
@@ -32,7 +32,7 @@ We need to setup the form defaults first:
   >>> from z3c.form.testing import setupFormDefaults
   >>> setupFormDefaults()
 
-And load the formui confguration, which will make sure that all macros get 
+And load the formui confguration, which will make sure that all macros get
 registered correctly.
 
   >>> from zope.configuration import xmlconfig
@@ -66,7 +66,7 @@ Let's define a sample content class:
   >>> from zope.schema.fieldproperty import FieldProperty
   >>> class IPerson(ILocation):
   ...     """Person interface."""
-  ... 
+  ...
   ...     firstName = zope.schema.TextLine(title=u'First Name')
   ...     lastName = zope.schema.TextLine(title=u'Last Name')
   ...     street = zope.schema.TextLine(title=u'Street')
@@ -75,9 +75,9 @@ Let's define a sample content class:
   >>> class Person(object):
   ...     """Person content."""
   ...     zope.interface.implements(IPerson)
-  ... 
+  ...
   ...     __name__ = __parent__ = None
-  ... 
+  ...
   ...     firstName = FieldProperty(IPerson['firstName'])
   ...     lastName = FieldProperty(IPerson['lastName'])
   ...     street = FieldProperty(IPerson['street'])
@@ -123,19 +123,19 @@ adapters. Let's use the global method addStep for doing the step setup:
   ...     """Person wizard marker."""
 
   >>> class PersonWizard(wizard.Wizard):
-  ... 
+  ...
   ...     zope.interface.implements(IPersonWizard)
   ...
   ...     label = u'Person Wizard'
-  ... 
+  ...
   ...     def setUpSteps(self):
   ...         return [
   ...             step.addStep(self, 'person', weight=1),
   ...             step.addStep(self, 'address', weight=2),
   ...             ]
 
-As next, we need to register our steps as named IStep adapters. This can be 
-done by the z3c:wizardStep directive. Let's define our adapters with the 
+As next, we need to register our steps as named IStep adapters. This can be
+done by the z3c:wizardStep directive. Let's define our adapters with the
 provideAdapter method for now:
 
   >>> import zope.interface
@@ -159,11 +159,11 @@ form part we usein our steps. Because our steps are forms:
   >>> request = TestRequest()
   >>> alsoProvides(request, IDivFormLayer)
 
-Now we can use our wizard. Our wizard will allways force to traverse to the 
-current active step. This means the wizard provides a browserDefault which 
-returns the default step instead of render the wizard as view. This allows us 
-to use the step as an adapter discriminator for viewlets and other adapters 
-like the menu implementation uses. The wizard acts like a dispatcher to the 
+Now we can use our wizard. Our wizard will allways force to traverse to the
+current active step. This means the wizard provides a browserDefault which
+returns the default step instead of render the wizard as view. This allows us
+to use the step as an adapter discriminator for viewlets and other adapters
+like the menu implementation uses. The wizard acts like a dispatcher to the
 right step and not as a view itself.
 
   >>> personWizard = PersonWizard(person, request)
@@ -175,7 +175,7 @@ Now get the default view (step) arguments from the wizard:
   >>> obj, names = personWizard.browserDefault(request)
   >>> obj
   <PersonWizard u'wizard'>
-  
+
   >>> names
   ('person',)
 
@@ -211,10 +211,12 @@ Now traverse to the step, update and render them:
                     <span class="required">*</span>
                   </label>
                 </div>
-                <div class="widget"><input type="text" id="form-widgets-firstName"
-                         name="form.widgets.firstName"
-                         class="text-widget required textline-field" value="" />
-              </div>
+                <div class="widget">
+      <input id="form-widgets-firstName"
+             name="form.widgets.firstName"
+             class="text-widget required textline-field"
+             value="" type="text" />
+  </div>
             </div>
             <div id="form-widgets-lastName-row" class="row">
                 <div class="label">
@@ -223,10 +225,12 @@ Now traverse to the step, update and render them:
                     <span class="required">*</span>
                   </label>
                 </div>
-                <div class="widget"><input type="text" id="form-widgets-lastName"
-                         name="form.widgets.lastName"
-                         class="text-widget required textline-field" value="" />
-              </div>
+                <div class="widget">
+      <input id="form-widgets-lastName"
+             name="form.widgets.lastName"
+             class="text-widget required textline-field"
+             value="" type="text" />
+  </div>
             </div>
           </div>
             <div>
@@ -234,14 +238,14 @@ Now traverse to the step, update and render them:
                 <span class="back">
                 </span>
                 <span class="step">
-                  <input type="submit" id="form-buttons-apply"
-                         name="form.buttons.apply"
-                         class="submit-widget button-field" value="Apply" />
+  <input id="form-buttons-apply" name="form.buttons.apply"
+         class="submit-widget button-field" value="Apply"
+         type="submit" />
                 </span>
                 <span class="forward">
-                  <input type="submit" id="form-buttons-next"
-                         name="form.buttons.next"
-                         class="submit-widget button-field" value="Next" />
+  <input id="form-buttons-next" name="form.buttons.next"
+         class="submit-widget button-field" value="Next"
+         type="submit" />
                 </span>
               </div>
             </div>
@@ -335,10 +339,12 @@ Update and render them:
                     <span class="required">*</span>
                   </label>
                 </div>
-                <div class="widget"><input type="text" id="form-widgets-street"
-                         name="form.widgets.street"
-                         class="text-widget required textline-field" value="" />
-              </div>
+                <div class="widget">
+      <input id="form-widgets-street"
+             name="form.widgets.street"
+             class="text-widget required textline-field"
+             value="" type="text" />
+  </div>
             </div>
             <div id="form-widgets-city-row" class="row">
                 <div class="label">
@@ -347,23 +353,24 @@ Update and render them:
                     <span class="required">*</span>
                   </label>
                 </div>
-                <div class="widget"><input type="text" id="form-widgets-city"
-                         name="form.widgets.city"
-                         class="text-widget required textline-field" value="" />
-              </div>
+                <div class="widget">
+      <input id="form-widgets-city" name="form.widgets.city"
+             class="text-widget required textline-field"
+             value="" type="text" />
+  </div>
             </div>
           </div>
             <div>
               <div class="buttons">
                 <span class="back">
-                  <input type="submit" id="form-buttons-back"
-                         name="form.buttons.back"
-                         class="submit-widget button-field" value="Back" />
+  <input id="form-buttons-back" name="form.buttons.back"
+         class="submit-widget button-field" value="Back"
+         type="submit" />
                 </span>
                 <span class="step">
-                  <input type="submit" id="form-buttons-apply"
-                         name="form.buttons.apply"
-                         class="submit-widget button-field" value="Apply" />
+  <input id="form-buttons-apply" name="form.buttons.apply"
+         class="submit-widget button-field" value="Apply"
+         type="submit" />
                 </span>
                 <span class="forward">
                 </span>

@@ -38,7 +38,7 @@ setup (
         read('CHANGES.txt')
         ),
     license = "ZPL 2.1",
-    keywords = "zope3 z3c form wizard",
+    keywords = "zope zope3 z3c form wizard",
     classifiers = [
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
@@ -62,11 +62,12 @@ setup (
             'zope.app.testing',
             'zope.publisher',
             'zope.testing',
+            'lxml',
             ],
         ),
     install_requires = [
         'setuptools',
-        'z3c.form',
+        'z3c.form >= 2.0',
         'z3c.formui',
         'z3c.pagelet',
         'zope.app.publisher',
