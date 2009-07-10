@@ -2,13 +2,15 @@
 CHANGES
 =======
 
-0.5.1dev (unreleased)
----------------------
+0.6.0 (2009-07-10)
+------------------
 
 - Remove dependency on z3c.i18n as it wasn't really used and we can
   easily recreate a message factory for the "z3c" domain.
 
 - Fixed tests to work with z3c.form 2.0.
+
+- Added another doctest to the `long_description`.
 
 - Changed package's mailing list address to zope-dev at zope.org instead
   of the retired zope3-dev one.
