@@ -49,17 +49,17 @@ def addStep(self, name, label=None, weight=None, available=None, **kws):
 
 class Step(form.Form):
     """Wizard base step implementation.
-    
+
     The step offers hooks for action handlers for all wizard actions. The step
     can also provide own actions and handlers. This actions get rendered as step
     actions. Between the bak an next wizard actions.
-    
-    A step can access the context or any object which you return by the 
-    getContent method. See z3c.form for more info about that. If you need a 
-    complexer wizard setup, you probably have to use a session and store 
+
+    A step can access the context or any object which you return by the
+    getContent method. See z3c.form for more info about that. If you need a
+    complexer wizard setup, you probably have to use a session and store
     temporary collected values in the session and store it if the wizard will
     call doComplete on the last step or in the wizard itself. Such a session
-    is not a part of this implementation. This wizard implementation works 
+    is not a part of this implementation. This wizard implementation works
     on any context like other z3c.form IForm implementations. For more infos
     see z3c.form which this wizard is based on.
     """
@@ -112,7 +112,7 @@ class Step(form.Form):
     @property
     def completed(self):
         """Simple default check for find out if a step is complete.
-        
+
         This method will ensure that we store at least all required form values
         and that this values are valid. You can implement any other or
         additional condition in your custom step implementation.
@@ -216,6 +216,6 @@ class EditStep(Step):
 class UnavailableStep(Step):
     """A step that is not available.
 
-    This class is particularly useful for turning off an adapter steps.
+    This class is particularly useful for turning off an adapter step.
     """
     available = False
