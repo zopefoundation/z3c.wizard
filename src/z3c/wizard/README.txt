@@ -4,8 +4,8 @@ Wizard
 
 The goal of this package is to offer a form wizard. This implementation doesn't
 use a session. It just offers the wizard logic, the data which the wizard will
-changes or adds is not a part of this implementation. If you like to implement
-some add wizard logic you probably need to use a session anf collect the values
+change or add is not a part of this implementation. If you like to implement
+some additional wizard logic you probably need to use a session and collect the values
 in the different wizard steps and create and add an object in the wizard's
 ``doComplete`` or ``doFinish`` or the step's ``doComplete`` method.
 
