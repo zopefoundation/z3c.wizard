@@ -1,6 +1,6 @@
 <div class="wizard"
      metal:define-macro="wizard">
-  <metal:block define-slot="header">
+  <metal:block define-slot="wizard-header">
     <div class="header" metal:define-macro="wizard-header"
          tal:content="view/wizard/label">label</div>
   </metal:block>
@@ -68,6 +68,22 @@
         <div class="step" metal:define-slot="widget-rows">
            <div metal:use-macro="macro:widget-rows" />
         </div>
+        <metal:block define-macro="groups">
+          <fieldset tal:condition="view/groups|nothing"
+                    tal:repeat="view view/groups">
+            <legend tal:condition="view/label"
+                    tal:content="view/label">Label</legend>
+            <metal:block define-slot="group-header">
+              <div class="status"
+                   tal:condition="view/widgets/errors">
+                <div metal:use-macro="macro:form-errors" />
+              </div>
+            </metal:block>
+            <metal:block define-slot="group-rows">
+              <div metal:use-macro="macro:widget-rows" />
+            </metal:block>
+          </fieldset>
+        </metal:block>
         <metal:block define-slot="above-buttons">
         </metal:block>
         <metal:block define-slot="buttons">

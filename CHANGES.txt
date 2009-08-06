@@ -5,7 +5,12 @@ CHANGES
 0.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added support for field groups in step template. (Copied over from
+  z3c.formui.)
+
+- There were two metal define-slots named `header`. Renamed the first
+  one to `wizard-header`.
+
 
 
 0.6.0 (2009-07-10)
