@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-0.6.1 (unreleased)
+0.7.0 (2009-08-15)
 ------------------
 
 - Added support for field groups in step template. (Copied over from
