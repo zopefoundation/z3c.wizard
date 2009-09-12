@@ -197,7 +197,7 @@ Now traverse to the step, update and render it:
       </div>
     <form action="http://127.0.0.1" method="post"
           enctype="multipart/form-data" class="edit-form"
-          id="form">
+          name="form" id="form">
         <div class="viewspace">
             <div class="label">Person</div>
             <div class="required-info">
@@ -325,7 +325,7 @@ Update and render it:
       </div>
     <form action="http://127.0.0.1" method="post"
           enctype="multipart/form-data" class="edit-form"
-          id="form">
+          name="form" id="form">
         <div class="viewspace">
             <div class="label">Address</div>
             <div class="required-info">

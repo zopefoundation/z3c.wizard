@@ -66,7 +66,6 @@ class Step(form.Form):
 
     zope.interface.implements(interfaces.IStep)
 
-    name = None
     label = None
     available = True
     visible = True

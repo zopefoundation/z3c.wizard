@@ -5,7 +5,8 @@ CHANGES
 0.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- bugifx for z3c.form changes. Removed name definition in Step class. This
+  will prevent to run into an error based on the latest z3c.form changes.
 
 
 0.7.0 (2009-08-15)
