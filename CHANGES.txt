@@ -2,10 +2,11 @@
 CHANGES
 =======
 
-0.7.2 (unreleased)
+0.8.0 (2009-11-30)
 ------------------
 
-- Nothing changed yet.
+- adjust dependencies, reflect changes in zope packages, use new packages and
+  skip dependency to zope.app.publisher
 
 
 0.7.1 (2009-10-27)

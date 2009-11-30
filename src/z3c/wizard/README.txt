@@ -37,15 +37,16 @@ And load the formui configuration, which will make sure that all macros get
 registered correctly:
 
   >>> from zope.configuration import xmlconfig
+  >>> import zope.browserresource
   >>> import zope.component
   >>> import zope.viewlet
   >>> import zope.app.publisher.browser
   >>> import z3c.macro
   >>> import z3c.template
   >>> import z3c.formui
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.browserresource)()
   >>> xmlconfig.XMLConfig('meta.zcml', zope.component)()
   >>> xmlconfig.XMLConfig('meta.zcml', zope.viewlet)()
-  >>> xmlconfig.XMLConfig('meta.zcml', zope.app.publisher.browser)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.macro)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.template)()
   >>> xmlconfig.XMLConfig('configure.zcml', z3c.formui)()

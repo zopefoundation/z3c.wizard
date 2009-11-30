@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup (
     name='z3c.wizard',
-    version = '0.7.2dev',
+    version = '0.8.0',
     author = "Roger Ineichen and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "Wizard based on z3c.form for for Zope3",
@@ -61,7 +61,6 @@ setup (
             'zope.app.testing',
             'zope.publisher',
             'zope.testing',
-            'lxml',
             ],
         ),
     install_requires = [
@@ -69,10 +68,11 @@ setup (
         'z3c.form >= 2.0',
         'z3c.formui',
         'z3c.pagelet',
-        'zope.app.publisher',
+        'zope.browserpage',
         'zope.component',
         'zope.configuration',
         'zope.event',
+        'zope.i18nmessageid',
         'zope.interface',
         'zope.lifecycleevent',
         'zope.location',

@@ -25,7 +25,10 @@ import zope.security.zcml
 from zope.configuration.exceptions import ConfigurationError
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-from zope.app.publisher.browser import viewmeta
+from zope.browserpage.metaconfigure import _handle_for
+from zope.browserpage.metaconfigure import _handle_permission
+from zope.browserpage.metaconfigure import _handle_allowed_interface
+from zope.browserpage.metaconfigure import _handle_allowed_attributes
 
 import z3c.pagelet.zcml
 
@@ -141,7 +144,7 @@ def wizardDirective(
     required = {}
 
     # Get the permission; mainly to correctly handle CheckerPublic.
-    permission = viewmeta._handle_permission(_context, permission)
+    permission = _handle_permission(_context, permission)
 
     # The class must be specified.
     if not class_:
@@ -162,18 +165,18 @@ def wizardDirective(
     new_class = type(class_.__name__, (class_, wizard.Wizard), cdict)
 
     # Set up permission mapping for various accessible attributes
-    viewmeta._handle_allowed_interface(
+    _handle_allowed_interface(
         _context, allowed_interface, permission, required)
-    viewmeta._handle_allowed_attributes(
+    _handle_allowed_attributes(
         _context, allowed_attributes, permission, required)
-    viewmeta._handle_allowed_attributes(
+    _handle_allowed_attributes(
         _context, kwargs.keys(), permission, required)
-    viewmeta._handle_allowed_attributes(
+    _handle_allowed_attributes(
         _context, ('__call__', 'browserDefault', 'update', 'render', 
                    'publishTraverse'), permission, required)
 
     # Register the interfaces.
-    viewmeta._handle_for(_context, for_)
+    _handle_for(_context, for_)
 
     # provide the custom provides interface if not allready provided
     if not provides.implementedBy(new_class):
@@ -201,7 +204,7 @@ def wizardStepDirective(
     required = {}
 
     # Get the permission; mainly to correctly handle CheckerPublic.
-    permission = viewmeta._handle_permission(_context, permission)
+    permission = _handle_permission(_context, permission)
 
     # The class must be specified.
     if not class_:
@@ -225,18 +228,18 @@ def wizardStepDirective(
     new_class = type(class_.__name__, (class_, step.Step), cdict)
 
     # Set up permission mapping for various accessible attributes
-    viewmeta._handle_allowed_interface(
+    _handle_allowed_interface(
         _context, allowed_interface, permission, required)
-    viewmeta._handle_allowed_attributes(
+    _handle_allowed_attributes(
         _context, allowed_attributes, permission, required)
-    viewmeta._handle_allowed_attributes(
+    _handle_allowed_attributes(
         _context, kwargs.keys(), permission, required)
-    viewmeta._handle_allowed_attributes(
+    _handle_allowed_attributes(
         _context, ('__call__', 'browserDefault', 'update', 'render', 
                    'publishTraverse'), permission, required)
 
     # Register the interfaces.
-    viewmeta._handle_for(_context, for_)
+    _handle_for(_context, for_)
 
     # provide the custom provides interface if not allready provided
     if not provides.implementedBy(new_class):
