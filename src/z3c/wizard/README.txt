@@ -28,13 +28,8 @@ Now let's show how this works and setup our tests.
 Form support
 ------------
 
-We need to setup the form defaults first:
-
-  .. >>> from z3c.form.testing import setupFormDefaults
-  .. >>> setupFormDefaults()
-
-And load the formui configuration, which will make sure that all macros get
-registered correctly:
+We need to load the formui configuration, which will make sure that
+all macros get registered correctly:
 
   >>> from zope.configuration import xmlconfig
   >>> import z3c.form
