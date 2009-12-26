@@ -5,7 +5,7 @@ CHANGES
 0.8.1 (unreleased)
 ------------------
 
-- Aviod `z3c.form.testing` in tests: It depends on `lxml`, but `lxml`
+- Avoid `z3c.form.testing` in tests: It depends on `lxml`, but `lxml`
   features are not needed here.
 
 
