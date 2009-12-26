@@ -30,25 +30,31 @@ Form support
 
 We need to setup the form defaults first:
 
-  >>> from z3c.form.testing import setupFormDefaults
-  >>> setupFormDefaults()
+  .. >>> from z3c.form.testing import setupFormDefaults
+  .. >>> setupFormDefaults()
 
 And load the formui configuration, which will make sure that all macros get
 registered correctly:
 
   >>> from zope.configuration import xmlconfig
-  >>> import zope.browserresource
-  >>> import zope.component
-  >>> import zope.viewlet
-  >>> import zope.app.publisher.browser
+  >>> import z3c.form
+  >>> import z3c.formui
   >>> import z3c.macro
   >>> import z3c.template
-  >>> import z3c.formui
-  >>> xmlconfig.XMLConfig('meta.zcml', zope.browserresource)()
-  >>> xmlconfig.XMLConfig('meta.zcml', zope.component)()
-  >>> xmlconfig.XMLConfig('meta.zcml', zope.viewlet)()
+  >>> import zope.browserresource
+  >>> import zope.component
+  >>> import zope.i18n
+  >>> import zope.security
+  >>> import zope.viewlet
+  >>> xmlconfig.XMLConfig('meta.zcml', z3c.form)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.macro)()
   >>> xmlconfig.XMLConfig('meta.zcml', z3c.template)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.browserresource)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.component)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.i18n)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.security)()
+  >>> xmlconfig.XMLConfig('meta.zcml', zope.viewlet)()
+  >>> xmlconfig.XMLConfig('configure.zcml', z3c.form)()
   >>> xmlconfig.XMLConfig('configure.zcml', z3c.formui)()
 
 And load the z3c.wizard macro configuration:
@@ -157,7 +163,10 @@ form part we use in our steps. Because our steps are forms:
 
   >>> from z3c.formui.interfaces import IDivFormLayer
   >>> from zope.interface import alsoProvides
-  >>> from z3c.form.testing import TestRequest
+  >>> import zope.publisher.browser
+  >>> import z3c.form.interfaces
+  >>> class TestRequest(zope.publisher.browser.TestRequest):
+  ...     zope.interface.implements(z3c.form.interfaces.IFormLayer)
   >>> request = TestRequest()
   >>> alsoProvides(request, IDivFormLayer)
 

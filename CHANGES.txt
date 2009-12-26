@@ -5,14 +5,15 @@ CHANGES
 0.8.1 (unreleased)
 ------------------
 
-- ...
+- Aviod `z3c.form.testing` in tests: It depends on `lxml`, but `lxml`
+  features are not needed here.
 
 
 0.8.0 (2009-11-30)
 ------------------
 
-- adjust dependencies, reflect changes in zope packages, use new packages and
-  skip dependency to zope.app.publisher
+- Adjusted dependencies, reflecting changes in zope packages: use new
+  packages and skip dependency to `zope.app.publisher`.
 
 
 0.7.1 (2009-10-27)
