@@ -206,8 +206,7 @@ Now traverse to the step, update and render it:
         <div class="viewspace">
             <div class="label">Person</div>
             <div class="required-info">
-               <span class="required">*</span>
-               &ndash; required
+               <span class="required">*</span>&ndash; required
             </div>
           <div class="step">
             <div id="form-widgets-firstName-row" class="row">
@@ -334,8 +333,7 @@ Update and render it:
         <div class="viewspace">
             <div class="label">Address</div>
             <div class="required-info">
-               <span class="required">*</span>
-               &ndash; required
+               <span class="required">*</span>&ndash; required
             </div>
           <div class="step">
             <div id="form-widgets-street-row" class="row">

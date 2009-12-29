@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2008 Zope Foundation and Contributors.
+# Copyright (c) 2008-2009 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -18,9 +18,9 @@ __docformat__ = "reStructuredText"
 
 from zope.app.pagetemplate import metaconfigure
 from zope.app.testing import setup
-
 import z3c.macro.tales
-
+import zope.i18n.interfaces
+import zope.i18n.negotiator
 
 ###############################################################################
 #
@@ -31,6 +31,8 @@ import z3c.macro.tales
 def setUp(test):
     test.globs = {'root': setup.placefulSetUp(True)}
 
+    zope.component.provideUtility(zope.i18n.negotiator.Negotiator(),
+                                  zope.i18n.interfaces.INegotiator)
     metaconfigure.registerType('macro', z3c.macro.tales.MacroExpression)
 
 

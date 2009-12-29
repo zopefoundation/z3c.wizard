@@ -61,6 +61,7 @@ setup (
             'zope.app.testing',
             'zope.publisher',
             'zope.testing',
+            'zope.browserresource',
             ],
         ),
     install_requires = [
