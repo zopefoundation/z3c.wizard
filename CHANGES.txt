@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-0.8.1 (unreleased)
+0.9.0 (2009-12-29)
 ------------------
 
 - Avoid `z3c.form.testing` in tests: It depends on `lxml`, but `lxml`
