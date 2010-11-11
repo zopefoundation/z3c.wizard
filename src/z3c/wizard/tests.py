@@ -11,15 +11,12 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Wizard button actions implementation
-$Id:$
-"""
-__docformat__ = "reStructuredText"
+"""Wizard button actions implementation."""
 
+from zope.publisher.browser import TestRequest
+import doctest
 import unittest
 import zope.interface
-from zope.testing import doctest
-from zope.publisher.browser import TestRequest
 
 import z3c.testing
 from z3c.wizard import interfaces
