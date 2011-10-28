@@ -122,7 +122,8 @@ class Step(form.Form):
                 continue
             dm = zope.component.getMultiAdapter(
                 (content, field.field), IDataManager)
-            if dm.get() is field.field.missing_value:
+            if dm.query(
+                    field.field.missing_value) is field.field.missing_value:
                 return False
         return True
 

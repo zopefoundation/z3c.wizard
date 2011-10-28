@@ -8,6 +8,10 @@ CHANGES
 - Using Python's ``doctest`` module instead of depreacted
   ``zope.testing.doctest``.
 
+- Allowing in step complete check that values are not existing on
+  context. This is consistent with the way `z3c.form` handles not existing
+  values.
+
 0.9.0 (2009-12-29)
 ------------------
 
