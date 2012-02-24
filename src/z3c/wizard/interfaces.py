@@ -233,7 +233,7 @@ class IWizard(zope.location.interfaces.ILocation):
         required=False)
 
     nextStepName = zope.schema.TextLine(
-        title=u'NExt step name',
+        title=u'Next step name',
         description=u'Next step name',
         default=None,
         required=False)

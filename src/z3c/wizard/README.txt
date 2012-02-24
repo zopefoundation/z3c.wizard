@@ -5,18 +5,17 @@ Wizard
 The goal of this package is to offer a form wizard. This implementation doesn't
 use a session. It just offers the wizard logic, the data which the wizard will
 change or add is not a part of this implementation. If you like to implement
-some additional wizard logic you probably need to use a session and collect the values
-in the different wizard steps and create and add an object in the wizard's
-``doComplete`` or ``doFinish`` or the step's ``doComplete`` method.
+some additional wizard logic you probably need to use a session and collect the
+values in the different wizard steps and create and add an object in the
+wizard's ``doComplete`` or ``doFinish`` or the step's ``doComplete`` method.
 
 All steps are available by their own url. This allows us to cache each step if
 needed. Each step url is only available if we are allowed to access a step. If
 a step is accessible depends on the conditions of each step.
 
-Since steps are adapters, we can register steps for already existing
-wizards or we can also override existing steps by registering a
-UnavailableStep step which always will return ``False`` for the
-``available`` argument.
+Since steps are adapters, we can register steps for already existing wizards or
+we can also override existing steps by registering a UnavailableStep step which
+always will return ``False`` for the ``available`` argument.
 
 If the wizard is completed we get redirected to the confirmation page. If we
 access a completed wizard again, we will get redirected to the confirmation
