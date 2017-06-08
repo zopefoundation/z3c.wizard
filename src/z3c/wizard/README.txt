@@ -199,16 +199,14 @@ Now traverse to the step, update and render it:
             <a href="http://127.0.0.1/person/wizard/address">Address</a>
         </span>
       </div>
-    <form action="http://127.0.0.1" method="post"
-          enctype="multipart/form-data" class="edit-form"
-          name="form" id="form">
+    <form action="http://127.0.0.1" method="post" enctype="multipart/form-data" class="edit-form" id="form" name="form">
         <div class="viewspace">
             <div class="label">Person</div>
             <div class="required-info">
-               <span class="required">*</span>&ndash; required
+              <span class="required">*</span>&ndash; required
             </div>
           <div class="step">
-            <div id="form-widgets-firstName-row" class="row">
+            <div id="form-widgets-firstName-row" class="row required">
                 <div class="label">
                   <label for="form-widgets-firstName">
                     <span>First Name</span>
@@ -216,13 +214,10 @@ Now traverse to the step, update and render it:
                   </label>
                 </div>
                 <div class="widget">
-      <input id="form-widgets-firstName"
-             name="form.widgets.firstName"
-             class="text-widget required textline-field"
-             value="" type="text" />
+      <input id="form-widgets-firstName" name="form.widgets.firstName" class="text-widget required textline-field" value="" type="text" />
   </div>
             </div>
-            <div id="form-widgets-lastName-row" class="row">
+            <div id="form-widgets-lastName-row" class="row required">
                 <div class="label">
                   <label for="form-widgets-lastName">
                     <span>Last Name</span>
@@ -230,10 +225,7 @@ Now traverse to the step, update and render it:
                   </label>
                 </div>
                 <div class="widget">
-      <input id="form-widgets-lastName"
-             name="form.widgets.lastName"
-             class="text-widget required textline-field"
-             value="" type="text" />
+      <input id="form-widgets-lastName" name="form.widgets.lastName" class="text-widget required textline-field" value="" type="text" />
   </div>
             </div>
           </div>
@@ -242,14 +234,10 @@ Now traverse to the step, update and render it:
                 <span class="back">
                 </span>
                 <span class="step">
-  <input id="form-buttons-apply" name="form.buttons.apply"
-         class="submit-widget button-field" value="Apply"
-         type="submit" />
+  <input id="form-buttons-apply" name="form.buttons.apply" class="submit-widget button-field" value="Apply" type="submit" />
                 </span>
                 <span class="forward">
-  <input id="form-buttons-next" name="form.buttons.next"
-         class="submit-widget button-field" value="Next"
-         type="submit" />
+  <input id="form-buttons-next" name="form.buttons.next" class="submit-widget button-field" value="Next" type="submit" />
                 </span>
               </div>
             </div>
@@ -298,7 +286,7 @@ step using the response redirect concept:
   'http://127.0.0.1/person/wizard/address'
 
 Let's access the next step using the traverser. This will setup the next step
-and tehm.
+and them.
 
   >>> request = TestRequest()
   >>> alsoProvides(request, IDivFormLayer)
@@ -326,16 +314,14 @@ Update and render it:
             <span>Address</span>
         </span>
       </div>
-    <form action="http://127.0.0.1" method="post"
-          enctype="multipart/form-data" class="edit-form"
-          name="form" id="form">
+    <form action="http://127.0.0.1" method="post" enctype="multipart/form-data" class="edit-form" id="form" name="form">
         <div class="viewspace">
             <div class="label">Address</div>
             <div class="required-info">
-               <span class="required">*</span>&ndash; required
+              <span class="required">*</span>&ndash; required
             </div>
           <div class="step">
-            <div id="form-widgets-street-row" class="row">
+            <div id="form-widgets-street-row" class="row required">
                 <div class="label">
                   <label for="form-widgets-street">
                     <span>Street</span>
@@ -343,13 +329,10 @@ Update and render it:
                   </label>
                 </div>
                 <div class="widget">
-      <input id="form-widgets-street"
-             name="form.widgets.street"
-             class="text-widget required textline-field"
-             value="" type="text" />
+      <input id="form-widgets-street" name="form.widgets.street" class="text-widget required textline-field" value="" type="text" />
   </div>
             </div>
-            <div id="form-widgets-city-row" class="row">
+            <div id="form-widgets-city-row" class="row required">
                 <div class="label">
                   <label for="form-widgets-city">
                     <span>City</span>
@@ -357,23 +340,17 @@ Update and render it:
                   </label>
                 </div>
                 <div class="widget">
-      <input id="form-widgets-city" name="form.widgets.city"
-             class="text-widget required textline-field"
-             value="" type="text" />
+      <input id="form-widgets-city" name="form.widgets.city" class="text-widget required textline-field" value="" type="text" />
   </div>
             </div>
           </div>
             <div>
               <div class="buttons">
                 <span class="back">
-  <input id="form-buttons-back" name="form.buttons.back"
-         class="submit-widget button-field" value="Back"
-         type="submit" />
+  <input id="form-buttons-back" name="form.buttons.back" class="submit-widget button-field" value="Back" type="submit" />
                 </span>
                 <span class="step">
-  <input id="form-buttons-apply" name="form.buttons.apply"
-         class="submit-widget button-field" value="Apply"
-         type="submit" />
+  <input id="form-buttons-apply" name="form.buttons.apply" class="submit-widget button-field" value="Apply" type="submit" />
                 </span>
                 <span class="forward">
                 </span>
