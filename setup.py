@@ -29,15 +29,13 @@ setup(
     author="Roger Ineichen and the Zope Community",
     author_email="zope-dev@zope.org",
     description="Wizard based on z3c.form for for Zope3",
-    long_description=(
-        read('README.txt')
-        + '\n\n.. contents::\n\n' +
-        read('src', 'z3c', 'wizard', 'README.txt')
-        + '\n\n' +
-        read('src', 'z3c', 'wizard', 'zcml.txt')
-        + '\n\n' +
-        read('CHANGES.txt')
-    ),
+    long_description='\n\n'.join([
+        read('README.txt'),
+        '.. contents::',
+        read('src', 'z3c', 'wizard', 'README.txt'),
+        read('src', 'z3c', 'wizard', 'zcml.txt'),
+        read('CHANGES.txt'),
+    ]),
     license="ZPL 2.1",
     keywords="zope zope3 z3c form wizard",
     classifiers=[
@@ -45,7 +43,9 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
