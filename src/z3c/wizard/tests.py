@@ -13,12 +13,12 @@
 ##############################################################################
 """Wizard button actions implementation."""
 
+from zope.interface.verify import verifyObject, verifyClass
 from zope.publisher.browser import TestRequest
 import doctest
 import unittest
 import zope.interface
 
-import z3c.testing
 from z3c.wizard import interfaces
 from z3c.wizard import wizard
 from z3c.wizard import step
@@ -61,38 +61,33 @@ def setStubs():
         (IContentStub, None, None), provides=interfaces.IStep, name='last')
 
 
-class TestStep(z3c.testing.InterfaceBaseTest):
+class TestStep(unittest.TestCase):
 
     def setUp(self):
         setStubs()
 
-    def getTestInterface(self):
-        return interfaces.IStep
+    def test_verifyClass(self):
+        self.assertTrue(verifyClass(interfaces.IStep, step.Step))
 
-    def getTestClass(self):
-        return step.Step
-
-    def getTestPos(self):
+    def test_verifyObject(self):
         content = ContentStub()
         request = TestRequest()
         wiz = wizard.Wizard(content, request)
-        return (content, request, wiz)
+        step_inst = step.Step(content, request, wiz)
+        self.assertTrue(verifyObject(interfaces.IStep, step_inst))
 
 
-class TestWizard(z3c.testing.InterfaceBaseTest):
+class TestWizard(unittest.TestCase):
 
     def setUp(self):
         setStubs()
 
-    def getTestInterface(self):
-        return interfaces.IWizard
+    def test_verifyClass(self):
+        self.assertTrue(verifyClass(interfaces.IWizard, wizard.Wizard))
 
-    def getTestClass(self):
-        return WizardTestClass
-
-    def getTestPos(self):
-        return (ContentStub(), TestRequest())
-
+    def test_verifyObject(self):
+        wiz = WizardTestClass(ContentStub(), TestRequest())
+        self.assertTrue(verifyObject(interfaces.IWizard, wiz))
 
 
 def test_suite():

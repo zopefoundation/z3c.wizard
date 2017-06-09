@@ -58,7 +58,6 @@ setup(
     extras_require=dict(
         test=[
             'z3c.macro',
-            'z3c.testing',
             'zope.app.pagetemplate',
             'zope.app.testing',
             'zope.publisher',
