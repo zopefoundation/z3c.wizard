@@ -95,7 +95,7 @@ class Step(form.Form):
 
     @property
     def nextURL(self):
-        """Next step url known by wizard."""
+        """Next step URL known by wizard."""
         return self.wizard.nextURL
 
     @property
@@ -157,19 +157,19 @@ class Step(form.Form):
         return True
 
     def doBack(self, action):
-        """Process back action and return True on sucess."""
+        """Process back action and return True on success."""
         if self.handleApplyOnBack:
             return self.doHandleApply(action)
         return True
 
     def doNext(self, action):
-        """Process next action and return True on sucess."""
+        """Process next action and return True on success."""
         if self.handleApplyOnNext:
             return self.doHandleApply(action)
         return True
 
     def doComplete(self, action):
-        """Process complete action and return True on sucess."""
+        """Process complete action and return True on success."""
         if self.handleApplyOnComplete:
             return self.doHandleApply(action)
         return True
@@ -180,9 +180,9 @@ class Step(form.Form):
         if self.nextURL is not None:
             # abort and do redirect in render method
             return
-        # update and excecute step actions
+        # update and execute step actions
         super(Step, self).update()
-        # excecute wizard actions
+        # execute wizard actions
         self.wizard.actions.execute()
 
     def render(self):

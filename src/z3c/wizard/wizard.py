@@ -37,14 +37,14 @@ class Wizard(form.Form):
     given from the steps. The wizard is also responsible for delegate the
     back, next and complete actions to the steps.
 
-    This IWizard object is modeled as a Controller known from the MVC
+    This IWizard object is modelled as a Controller known from the MVC
     (Model, view, controller) patter version 2.0 and the step is implemented as
     a view.
     """
 
     buttons = button.Buttons(interfaces.IWizardButtons)
 
-    # custmize this part if needed
+    # customize this part if needed
     stepInterface = interfaces.IStep
 
     firstStepAsDefault = True
@@ -182,7 +182,7 @@ class Wizard(form.Form):
 
     def doAdjustStep(self):
         # Make sure all previous steps got completed. If not, redirect to the
-        # last uncomplete step
+        # last incomplete step
         if not self.adjustStep:
             return False
         for step in self.steps:
