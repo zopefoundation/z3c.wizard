@@ -74,9 +74,10 @@ Let's define a sample content class:
   ...     street = zope.schema.TextLine(title=u'Street')
   ...     city = zope.schema.TextLine(title=u'City')
 
-  >>> class Person(object):
+  >>> @zope.interface.implementer(IPerson)
+  ... class Person(object):
   ...     """Person content."""
-  ...     zope.interface.implements(IPerson)
+  ...
   ...
   ...     __name__ = __parent__ = None
   ...
@@ -124,9 +125,8 @@ adapters. Let's use the global method ``addStep`` for doing the step setup:
   >>> class IPersonWizard(z3c.wizard.interfaces.IWizard):
   ...     """Person wizard marker."""
 
-  >>> class PersonWizard(wizard.Wizard):
-  ...
-  ...     zope.interface.implements(IPersonWizard)
+  >>> @zope.interface.implementer(IPersonWizard)
+  ... class PersonWizard(wizard.Wizard):
   ...
   ...     label = u'Person Wizard'
   ...
@@ -159,8 +159,9 @@ form part we use in our steps. Because our steps are forms:
   >>> from zope.interface import alsoProvides
   >>> import zope.publisher.browser
   >>> import z3c.form.interfaces
-  >>> class TestRequest(zope.publisher.browser.TestRequest):
-  ...     zope.interface.implements(z3c.form.interfaces.IFormLayer)
+  >>> @zope.interface.implementer(z3c.form.interfaces.IFormLayer)
+  ... class TestRequest(zope.publisher.browser.TestRequest):
+  ...     pass
   >>> request = TestRequest()
   >>> alsoProvides(request, IDivFormLayer)
 
@@ -179,7 +180,7 @@ Now get the default view (step) arguments from the wizard:
 
   >>> obj, names = personWizard.browserDefault(request)
   >>> obj
-  <PersonWizard u'wizard'>
+  <PersonWizard 'wizard'>
 
   >>> names
   ('person',)
@@ -188,7 +189,7 @@ Now traverse to the step, update and render it:
 
   >>> personStep = obj.publishTraverse(request, names[0])
   >>> personStep.update()
-  >>> print personStep.render()
+  >>> print(personStep.render())
   <div class="wizard">
       <div class="header">Person Wizard</div>
       <div class="wizardMenu">
@@ -255,7 +256,7 @@ We can't go to the next step if we not complete the first step:
   >>> personWizard.__name__ = u'wizard'
   >>> personStep = personWizard.publishTraverse(request, names[0])
   >>> personStep.update()
-  >>> print personStep.render()
+  >>> print(personStep.render())
   <div class="wizard">
   ...
     <div class="summary">There were some errors.</div>
@@ -277,7 +278,7 @@ We can complete this step if we fill in the required values and click next:
   >>> personWizard.__name__ = u'wizard'
   >>> personStep = personWizard.publishTraverse(request, names[0])
   >>> personStep.update()
-  >>> print personStep.render()
+  >>> print(personStep.render())
 
 As you can see the step get processed and the wizard will redirect to the next
 step using the response redirect concept:
@@ -303,7 +304,7 @@ As you can see we see our next step is the address step:
 Update and render it:
 
   >>> addressStep.update()
-  >>> print addressStep.render()
+  >>> print(addressStep.render())
   <div class="wizard">
       <div class="header">Person Wizard</div>
       <div class="wizardMenu">

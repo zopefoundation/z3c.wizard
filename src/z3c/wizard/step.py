@@ -11,11 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Wizard button actions implementation
-$Id:$
-"""
-__docformat__ = "reStructuredText"
-
 import zope.component
 import zope.interface
 import zope.event
@@ -47,6 +42,7 @@ def addStep(self, name, label=None, weight=None, available=None, **kws):
     return step
 
 
+@zope.interface.implementer(interfaces.IStep)
 class Step(form.Form):
     """Wizard base step implementation.
 
@@ -63,8 +59,6 @@ class Step(form.Form):
     on any context like other z3c.form IForm implementations. For more infos
     see z3c.form which this wizard is based on.
     """
-
-    zope.interface.implements(interfaces.IStep)
 
     label = None
     available = True
@@ -202,7 +196,7 @@ class Step(form.Form):
         return super(Step, self).render()
 
     def __repr__(self):
-        return '<%s %r>' % (self.__class__.__name__, self.__name__)
+        return "<%s '%s'>" % (self.__class__.__name__, self.__name__)
 
 
 class EditStep(Step):

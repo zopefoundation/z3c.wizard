@@ -29,10 +29,9 @@ class IContentStub(zope.interface.Interface):
     """Content stub marker."""
 
 
+@zope.interface.implementer(IContentStub)
 class ContentStub(object):
     """Content stub."""
-
-    zope.interface.implements(IContentStub)
 
     def values(self):
         pass

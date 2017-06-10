@@ -11,11 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Wizard button actions implementation
-$Id:$
-"""
-__docformat__ = "reStructuredText"
-
+"""Wizard button actions implementation."""
 import zope.component
 import zope.interface
 from zope.publisher.interfaces import NotFound
@@ -36,9 +32,10 @@ def nameStep(step, name):
     return step
 
 
+@zope.interface.implementer(interfaces.IWizard)
 class Wizard(form.Form):
     """Wizard form.
-    
+
     The wizard is responsible for manage the steps and offers the wizard menu
     navigation and knows the step order. The wizard can check the conditions
     given from the steps. The wizard is also responsible for delegate the
@@ -48,8 +45,6 @@ class Wizard(form.Form):
     (Model, view, controller) patter version 2.0 and the step is implemented as
     a view.
     """
-
-    zope.interface.implements(interfaces.IWizard)
 
     buttons = button.Buttons(interfaces.IWizardButtons)
 
@@ -75,9 +70,9 @@ class Wizard(form.Form):
 
     def setUpSteps(self):
         """Return a list of steps. This implementation uses IStep adapters.
-        
-        Take a look at the addStep method defined in step.py. This method 
-        allows you to setup steps directly in the method and offers an API for 
+
+        Take a look at the addStep method defined in step.py. This method
+        allows you to setup steps directly in the method and offers an API for
         customized step setup.
         """
         steps = list(zope.component.getAdapters((self.context, self.request,
@@ -190,7 +185,7 @@ class Wizard(form.Form):
         return self.steps[0]
 
     def doAdjustStep(self):
-        # Make sure all previous steps got completed. If not, redirect to the 
+        # Make sure all previous steps got completed. If not, redirect to the
         # last uncomplete step
         if not self.adjustStep:
             return False
@@ -281,4 +276,4 @@ class Wizard(form.Form):
         raise NotImplementedError('render is no supported')
 
     def __repr__(self):
-        return '<%s %r>' % (self.__class__.__name__, self.__name__)
+        return "<%s '%s'>" % (self.__class__.__name__, self.__name__)
