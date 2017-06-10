@@ -54,9 +54,11 @@ class WizardTestClass(wizard.Wizard):
 
 
 def setStubs():
-    zope.component.provideAdapter(StepTestClass,
+    zope.component.provideAdapter(
+        StepTestClass,
         (IContentStub, None, None), provides=interfaces.IStep, name='first')
-    zope.component.provideAdapter(StepTestClass,
+    zope.component.provideAdapter(
+        StepTestClass,
         (IContentStub, None, None), provides=interfaces.IStep, name='last')
 
 
@@ -91,17 +93,15 @@ class TestWizard(unittest.TestCase):
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocFileSuite('README.txt',
+        doctest.DocFileSuite(
+            'README.txt',
             setUp=testing.setUp, tearDown=testing.tearDown,
-            optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
-            ),
-        doctest.DocFileSuite('zcml.txt',
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
+        ),
+        doctest.DocFileSuite(
+            'zcml.txt',
             setUp=testing.setUp, tearDown=testing.tearDown,
-            optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,),
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,),
         unittest.makeSuite(TestStep),
         unittest.makeSuite(TestWizard),
-        ))
-
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
+    ))

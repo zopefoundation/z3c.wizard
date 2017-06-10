@@ -11,17 +11,13 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Wizard button actions implementation."""
 import zope.component
 import zope.interface
 from zope.publisher.interfaces import NotFound
 from zope.traversing.browser import absoluteURL
 
 from z3c.form import button
-from z3c.form import field
-from z3c.form import subform
 from z3c.formui import form
-from z3c.formui import layout
 from z3c.wizard import interfaces
 from z3c.wizard.button import WizardButtonActions
 
@@ -57,7 +53,7 @@ class Wizard(form.Form):
     nextURL = None
 
     cssActive = 'selected'
-    cssInActive = None # None will skip class attribute in DOM element
+    cssInActive = None  # None will skip class attribute in DOM element
 
     # for internal use
     __name__ = None
@@ -75,8 +71,8 @@ class Wizard(form.Form):
         allows you to setup steps directly in the method and offers an API for
         customized step setup.
         """
-        steps = list(zope.component.getAdapters((self.context, self.request,
-            self), self.stepInterface))
+        steps = list(zope.component.getAdapters(
+            (self.context, self.request, self), self.stepInterface))
         return [nameStep(step, name) for name, step in steps]
 
     def filterSteps(self, steps):
@@ -133,7 +129,7 @@ class Wizard(form.Form):
         idx = stepNames.index(self.step.__name__)
         if idx == 0:
             return
-        return stepNames[idx-1]
+        return stepNames[idx - 1]
 
     @property
     def nextStepName(self):
@@ -141,15 +137,15 @@ class Wizard(form.Form):
             return
         stepNames = [step.__name__ for step in self.steps]
         idx = stepNames.index(self.step.__name__)
-        if idx == len(stepNames)-1:
+        if idx == len(stepNames) - 1:
             return
-        return stepNames[idx+1]
+        return stepNames[idx + 1]
 
     @property
     def stepMenu(self):
         items = []
         append = items.append
-        lenght = len(self.steps)-1
+        lenght = len(self.steps) - 1
         for idx, step in enumerate(self.steps):
             firstStep = False
             lastStep = False
@@ -163,13 +159,13 @@ class Wizard(form.Form):
                 append({
                     'name': step.__name__,
                     'title': step.label,
-                    'number': str(idx+1),
+                    'number': str(idx + 1),
                     'url': '%s/%s' % (self.baseURL, step.__name__),
                     'selected': self.step.__name__ == step.__name__,
                     'class': cssClass,
                     'first': firstStep,
                     'last': lastStep
-                    })
+                })
         return items
 
     def getDefaultStep(self):
@@ -179,7 +175,7 @@ class Wizard(form.Form):
             return self.steps[0]
         # return first not completed step
         for step in self.steps:
-            if step.completed == False:
+            if not step.completed:
                 return step
         # fallback to first step if all steps completed
         return self.steps[0]
@@ -192,7 +188,7 @@ class Wizard(form.Form):
         for step in self.steps:
             if step.__name__ is self.step.__name__:
                 break
-            if step.completed == False:
+            if not step.completed:
                 # prepare redirect to not completed step and return True
                 self.nextURL = '%s/%s' % (self.baseURL, step.__name__)
                 return True
@@ -200,8 +196,7 @@ class Wizard(form.Form):
         return False
 
     def updateActions(self):
-        self.actions = WizardButtonActions(self, self.request,
-            self.context)
+        self.actions = WizardButtonActions(self, self.request, self.context)
         self.actions.update()
 
     def update(self):
@@ -257,7 +252,8 @@ class Wizard(form.Form):
     def doFinish(self):
         """Force redirect after doComplete if confirmationPageName is given."""
         if self.confirmationPageName is not None:
-            self.nextURL = '%s/%s' % (absoluteURL(self.context, self.request),
+            self.nextURL = '%s/%s' % (
+                absoluteURL(self.context, self.request),
                 self.confirmationPageName)
 
     @button.handler(interfaces.IWizardButtons['back'])

@@ -19,6 +19,7 @@ def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
 
+
 setup(
     name='z3c.wizard',
     version='1.0.dev0',
