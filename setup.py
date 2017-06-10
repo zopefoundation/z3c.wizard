@@ -52,7 +52,7 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
         'Framework :: Zope3'],
-    url='http://pypi.python.org/pypi/z3c.wizard',
+    url='https://github.com/zopefoundation/z3c.wizard',
     packages=find_packages('src'),
     include_package_data=True,
     package_dir={'': 'src'},
