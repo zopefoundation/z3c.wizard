@@ -22,7 +22,7 @@ def read(*rnames):
 
 setup(
     name='z3c.wizard',
-    version='1.0.dev0',
+    version='1.0',
     author="Roger Ineichen and the Zope Community",
     author_email="zope-dev@zope.org",
     description="Wizard based on z3c.form for for Zope3",
