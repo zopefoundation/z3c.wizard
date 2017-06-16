@@ -69,7 +69,7 @@ Let's get the wizard
 and check it:
 
   >>> wizard
-  <MyWizard u'wizard'>
+  <MyWizard 'wizard'>
 
   >>> z3c.wizard.interfaces.IWizard.providedBy(wizard)
   True
@@ -84,13 +84,13 @@ Let's get the wizard step
 and check it
 
   >>> firstStep
-  <FirstStep u'first'>
+  <FirstStep 'first'>
 
   >>> firstStep.context
   <object object at ...>
 
   >>> firstStep.wizard
-  <MyWizard u'wizard'>
+  <MyWizard 'wizard'>
 
   >>> z3c.wizard.interfaces.IStep.providedBy(firstStep)
   True

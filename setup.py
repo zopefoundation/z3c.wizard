@@ -11,10 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Setup
-
-$Id:$
-"""
 import os
 from setuptools import setup, find_packages
 
@@ -25,7 +21,7 @@ def read(*rnames):
 
 setup(
     name='z3c.wizard',
-    version='0.9.2dev',
+    version='1.0.dev0',
     author="Roger Ineichen and the Zope Community",
     author_email="zope-dev@zope.org",
     description="Wizard based on z3c.form for for Zope3",
@@ -45,7 +41,12 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
@@ -58,7 +59,6 @@ setup(
     extras_require=dict(
         test=[
             'z3c.macro',
-            'z3c.testing',
             'zope.app.pagetemplate',
             'zope.app.testing',
             'zope.publisher',

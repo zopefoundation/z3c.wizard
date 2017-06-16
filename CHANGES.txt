@@ -2,10 +2,10 @@
 CHANGES
 =======
 
-0.9.2 (unreleased)
-------------------
+1.0 (unreleased)
+----------------
 
-- Nothing changed yet.
+- Add support for Python 3.4 up to 3.6, PyPy2 and PyPy3.
 
 
 0.9.1 (2011-10-28)
