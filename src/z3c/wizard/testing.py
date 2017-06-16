@@ -11,16 +11,12 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Wizard button actions implementation
-$Id:$
-"""
-__docformat__ = "reStructuredText"
-
 from zope.app.pagetemplate import metaconfigure
 from zope.app.testing import setup
 import z3c.macro.tales
 import zope.i18n.interfaces
 import zope.i18n.negotiator
+
 
 ###############################################################################
 #

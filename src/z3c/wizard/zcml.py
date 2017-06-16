@@ -11,11 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Wizard button actions implementation
-$Id:$
-"""
-__docformat__ = "reStructuredText"
-
 import zope.interface
 import zope.component
 import zope.schema
@@ -48,7 +43,7 @@ class IWizardDirective(z3c.pagelet.zcml.IPageletDirective):
 class IWizardStepDirective(zope.interface.Interface):
     """A directive to register a new wizard step.
 
-    The wizard step directive also supports an undefined set of keyword 
+    The wizard step directive also supports an undefined set of keyword
     arguments that are set as attributes on the wizard step after creation.
     """
 
@@ -60,20 +55,17 @@ class IWizardStepDirective(zope.interface.Interface):
     class_ = zope.configuration.fields.GlobalObject(
         title=u"Class",
         description=u"A class that provides attributes used by the pagelet.",
-        required=True,
-        )
+        required=True)
 
     permission = zope.security.zcml.Permission(
         title=u"Permission",
         description=u"The permission needed to use the pagelet.",
-        required=True
-        )
+        required=True)
 
     for_ = zope.configuration.fields.GlobalObject(
         title=u"Context",
         description=u"The content interface or class this pagelet is for.",
-        required=False
-        )
+        required=False)
 
     layer = zope.configuration.fields.GlobalInterface(
         title=u"The layer the view is in.",
@@ -81,14 +73,12 @@ class IWizardStepDirective(zope.interface.Interface):
         A skin is composed of layers. It is common to put skin
         specific views in a layer named after the skin. If the 'layer'
         attribute is not supplied, it defaults to 'default'.""",
-        required=False,
-        )
+        required=False)
 
     wizard = zope.configuration.fields.GlobalObject(
         title=u"Wizard",
         description=u"The wizard interface or class this step is for.",
-        required=False
-        )
+        required=False)
 
     provides = zope.configuration.fields.GlobalInterface(
         title=u"The interface this pagelets provides.",
@@ -96,8 +86,7 @@ class IWizardStepDirective(zope.interface.Interface):
         A pagelet can provide an interface.  This would be used for
         views that support other views.""",
         required=False,
-        default=interfaces.IPagelet,
-        )
+        default=interfaces.IPagelet)
 
     allowed_interface = zope.configuration.fields.Tokens(
         title=u"Interface that is also allowed if user has permission.",
@@ -110,20 +99,18 @@ class IWizardStepDirective(zope.interface.Interface):
         Multiple interfaces can be provided, separated by
         whitespace.""",
         required=False,
-        value_type=zope.configuration.fields.GlobalInterface(),
-        )
+        value_type=zope.configuration.fields.GlobalInterface())
 
     allowed_attributes = zope.configuration.fields.Tokens(
         title=u"View attributes that are also allowed if the user"
-                " has permission.",
+              u" has permission.",
         description=u"""
         By default, 'permission' only applies to viewing the view and
         any possible sub views. By specifying 'allowed_attributes',
         you can make the permission also apply to the extra attributes
         on the view object.""",
         required=False,
-        value_type=zope.configuration.fields.PythonIdentifier(),
-        )
+        value_type=zope.configuration.fields.PythonIdentifier())
 
 
 # Arbitrary keys and values are allowed to be passed to the wizard.
@@ -136,9 +123,9 @@ IWizardStepDirective.setTaggedValue('keyword_arguments', True)
 
 # wizard directive
 def wizardDirective(
-    _context, class_, name, permission, for_=zope.interface.Interface, 
-    layer=IDefaultBrowserLayer, provides=interfaces.IWizard,
-    allowed_interface=None, allowed_attributes=None, **kwargs):
+        _context, class_, name, permission, for_=zope.interface.Interface,
+        layer=IDefaultBrowserLayer, provides=interfaces.IWizard,
+        allowed_interface=None, allowed_attributes=None, **kwargs):
 
     # Security map dictionary
     required = {}
@@ -172,7 +159,7 @@ def wizardDirective(
     _handle_allowed_attributes(
         _context, kwargs.keys(), permission, required)
     _handle_allowed_attributes(
-        _context, ('__call__', 'browserDefault', 'update', 'render', 
+        _context, ('__call__', 'browserDefault', 'update', 'render',
                    'publishTraverse'), permission, required)
 
     # Register the interfaces.
@@ -183,22 +170,22 @@ def wizardDirective(
         zope.interface.classImplements(new_class, provides)
 
     # Create the security checker for the new class
-    zope.security.checker.defineChecker(new_class, 
-        zope.security.checker.Checker(required))
+    zope.security.checker.defineChecker(
+        new_class, zope.security.checker.Checker(required))
 
     # register pagelet
     _context.action(
-        discriminator = ('pagelet', for_, layer, name),
-        callable = zope.component.zcml.handler,
-        args = ('registerAdapter',
-                new_class, (for_, layer), provides, name, _context.info),)
+        discriminator=('pagelet', for_, layer, name),
+        callable=zope.component.zcml.handler,
+        args=('registerAdapter',
+              new_class, (for_, layer), provides, name, _context.info),)
 
-# step directive
+
 def wizardStepDirective(
-    _context, class_, name, permission, for_=zope.interface.Interface, 
-    layer=IDefaultBrowserLayer, wizard=interfaces.IWizard,
-    provides=interfaces.IStep, allowed_interface=None,
-    allowed_attributes=None, **kwargs):
+        _context, class_, name, permission, for_=zope.interface.Interface,
+        layer=IDefaultBrowserLayer, wizard=interfaces.IWizard,
+        provides=interfaces.IStep, allowed_interface=None,
+        allowed_attributes=None, **kwargs):
 
     # Security map dictionary
     required = {}
@@ -235,7 +222,7 @@ def wizardStepDirective(
     _handle_allowed_attributes(
         _context, kwargs.keys(), permission, required)
     _handle_allowed_attributes(
-        _context, ('__call__', 'browserDefault', 'update', 'render', 
+        _context, ('__call__', 'browserDefault', 'update', 'render',
                    'publishTraverse'), permission, required)
 
     # Register the interfaces.
@@ -246,12 +233,12 @@ def wizardStepDirective(
         zope.interface.classImplements(new_class, provides)
 
     # Create the security checker for the new class
-    zope.security.checker.defineChecker(new_class, 
-        zope.security.checker.Checker(required))
+    zope.security.checker.defineChecker(
+        new_class, zope.security.checker.Checker(required))
 
     # register pagelet
     _context.action(
-        discriminator = ('pagelet', for_, layer, name),
-        callable = zope.component.zcml.handler,
-        args = ('registerAdapter',
-                new_class, (for_, layer, wizard), provides, name, _context.info),)
+        discriminator=('pagelet', for_, layer, name),
+        callable=zope.component.zcml.handler,
+        args=('registerAdapter',
+              new_class, (for_, layer, wizard), provides, name, _context.info))

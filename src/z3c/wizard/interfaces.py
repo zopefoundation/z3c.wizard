@@ -11,11 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Wizard button actions implementation
-$Id:$
-"""
-__docformat__ = "reStructuredText"
-
 import zope.i18nmessageid
 import zope.interface
 import zope.schema
@@ -26,6 +21,7 @@ from z3c.form import button
 from z3c.pagelet.interfaces import IPagelet
 
 _ = zope.i18nmessageid.MessageFactory('z3c')
+
 
 class IBackButton(interfaces.IButton):
     """A button that redirects to the previous step."""
@@ -239,17 +235,14 @@ class IWizard(zope.location.interfaces.ILocation):
         required=False)
 
     def doAdjustStep():
-        """Ensure that we can't traverse to more then the first not completed 
-        step.
+        """Ensure traversal is only possible up to first not completed step.
+
+        Trying to traverse to another step redirects to the first incomplete
+        one.
         """
 
     def getDefaultStep():
         """Can return the first or first not completed step as default."""
-
-    def doAdjustStep():
-        """Make sure all previous steps got completed. If not, redirect to the 
-        last uncomplete step.
-        """
 
     def updateActions():
         """Update wizard actions."""

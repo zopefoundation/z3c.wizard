@@ -17,19 +17,15 @@ import zope.event
 import zope.lifecycleevent
 
 from z3c.form.interfaces import IDataManager
-from z3c.form.interfaces import IActionHandler
 from z3c.form import button
-from z3c.form import field
-from z3c.form import subform
 from z3c.formui import form
-from z3c.formui import layout
 from z3c.wizard import interfaces
 from z3c.wizard.interfaces import _
 
 
 def addStep(self, name, label=None, weight=None, available=None, **kws):
     step = zope.component.getMultiAdapter((self.context, self.request, self),
-        interfaces.IStep, name=name)
+                                          interfaces.IStep, name=name)
     step.__name__ = name
     if label is not None:
         step.label = label
@@ -47,8 +43,8 @@ class Step(form.Form):
     """Wizard base step implementation.
 
     The step offers hooks for action handlers for all wizard actions. The step
-    can also provide own actions and handlers. This actions get rendered as step
-    actions. Between the bak an next wizard actions.
+    can also provide own actions and handlers. This actions get rendered as
+    step actions. Between the back an next wizard actions.
 
     A step can access the context or any object which you return by the
     getContent method. See z3c.form for more info about that. If you need a
@@ -99,7 +95,7 @@ class Step(form.Form):
 
     @property
     def nextURL(self):
-        """Next step url known by wizard."""
+        """Next step URL known by wizard."""
         return self.wizard.nextURL
 
     @property
@@ -143,7 +139,8 @@ class Step(form.Form):
                     zope.lifecycleevent.Attributes(interface, *names))
             # Send out a detailed object-modified event
             zope.event.notify(
-                zope.lifecycleevent.ObjectModifiedEvent(content, *descriptions))
+                zope.lifecycleevent.ObjectModifiedEvent(
+                    content, *descriptions))
         return changes
 
     def doHandleApply(self, action):
@@ -160,19 +157,19 @@ class Step(form.Form):
         return True
 
     def doBack(self, action):
-        """Process back action and return True on sucess."""
+        """Process back action and return True on success."""
         if self.handleApplyOnBack:
             return self.doHandleApply(action)
         return True
 
     def doNext(self, action):
-        """Process next action and return True on sucess."""
+        """Process next action and return True on success."""
         if self.handleApplyOnNext:
             return self.doHandleApply(action)
         return True
 
     def doComplete(self, action):
-        """Process complete action and return True on sucess."""
+        """Process complete action and return True on success."""
         if self.handleApplyOnComplete:
             return self.doHandleApply(action)
         return True
@@ -183,9 +180,9 @@ class Step(form.Form):
         if self.nextURL is not None:
             # abort and do redirect in render method
             return
-        # update and excecute step actions
+        # update and execute step actions
         super(Step, self).update()
-        # excecute wizard actions
+        # execute wizard actions
         self.wizard.actions.execute()
 
     def render(self):
@@ -212,4 +209,5 @@ class UnavailableStep(Step):
 
     This class is particularly useful for turning off an adapter step.
     """
+
     available = False
