@@ -102,8 +102,8 @@ class IWizardStepDirective(zope.interface.Interface):
         value_type=zope.configuration.fields.GlobalInterface())
 
     allowed_attributes = zope.configuration.fields.Tokens(
-        title=u"View attributes that are also allowed if the user "
-              u"has permission.",
+        title=u"View attributes that are also allowed if the user"
+              u" has permission.",
         description=u"""
         By default, 'permission' only applies to viewing the view and
         any possible sub views. By specifying 'allowed_attributes',

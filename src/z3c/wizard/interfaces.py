@@ -237,7 +237,7 @@ class IWizard(zope.location.interfaces.ILocation):
     def doAdjustStep():
         """Ensure traversal is only possible up to first not completed step.
 
-        Trying to traverse to an other step redirects to the first incomplete
+        Trying to traverse to another step redirects to the first incomplete
         one.
         """
 
