@@ -94,12 +94,12 @@ class TestWizard(unittest.TestCase):
 def test_suite():
     return unittest.TestSuite((
         doctest.DocFileSuite(
-            'README.txt',
+            'README.rst',
             setUp=testing.setUp, tearDown=testing.tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
         ),
         doctest.DocFileSuite(
-            'zcml.txt',
+            'zcml.rst',
             setUp=testing.setUp, tearDown=testing.tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,),
         unittest.makeSuite(TestStep),
