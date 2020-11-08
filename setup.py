@@ -43,10 +43,10 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
@@ -66,6 +66,7 @@ setup(
         '!=3.2.*',
         '!=3.3.*',
         '!=3.4.*',
+        '!=3.5.*',
     ]),
     extras_require=dict(
         test=[
