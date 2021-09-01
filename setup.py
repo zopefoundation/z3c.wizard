@@ -73,9 +73,10 @@ setup(
             'z3c.macro',
             'zope.app.pagetemplate',
             'zope.app.testing',
+            'zope.browserresource',
             'zope.publisher',
             'zope.testing',
-            'zope.browserresource',
+            'zope.testrunner',
         ],
     ),
     install_requires=[
