@@ -32,7 +32,7 @@ class IContentStub(zope.interface.Interface):
 
 
 @zope.interface.implementer(IContentStub)
-class ContentStub(object):
+class ContentStub:
     """Content stub."""
 
     def values(self):
@@ -49,7 +49,7 @@ class WizardTestClass(wizard.Wizard):
     baseURL = '#'
 
     def __init__(self, context, request):
-        super(WizardTestClass, self).__init__(context, request)
+        super().__init__(context, request)
         self.step = StepTestClass(context, request, self)
         self.step.__name__ = 'first'
         self.step.__parent__ = self
@@ -104,6 +104,6 @@ def test_suite():
             'zcml.rst',
             setUp=testing.setUp, tearDown=testing.tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,),
-        unittest.makeSuite(TestStep),
-        unittest.makeSuite(TestWizard),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestStep),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestWizard),
     ))

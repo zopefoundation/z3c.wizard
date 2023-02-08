@@ -26,7 +26,7 @@ setup(
     name='z3c.wizard',
     version='2.0.dev0',
     author="Roger Ineichen and the Zope Community",
-    author_email="zope-dev@zope.org",
+    author_email="zope-dev@zope.dev",
     description="Wizard based on z3c.form for for Zope3",
     long_description='\n\n'.join([
         read('README.rst'),
@@ -60,9 +60,7 @@ setup(
     include_package_data=True,
     package_dir={'': 'src'},
     namespace_packages=['z3c'],
-    python_requires=','.join([
-        '>=3.7',
-    ]),
+    python_requires='>=3.7',
     extras_require=dict(
         test=[
             'z3c.macro',

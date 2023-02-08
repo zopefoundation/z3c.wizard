@@ -181,7 +181,7 @@ class Step(form.Form):
             # abort and do redirect in render method
             return
         # update and execute step actions
-        super(Step, self).update()
+        super().update()
         # execute wizard actions
         self.wizard.actions.execute()
 
@@ -189,11 +189,11 @@ class Step(form.Form):
         # render content template
         if self.nextURL is not None:
             self.request.response.redirect(self.nextURL)
-            return u''
-        return super(Step, self).render()
+            return ''
+        return super().render()
 
     def __repr__(self):
-        return "<%s '%s'>" % (self.__class__.__name__, self.__name__)
+        return "<{} '{}'>".format(self.__class__.__name__, self.__name__)
 
 
 class EditStep(Step):
