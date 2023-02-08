@@ -11,21 +11,19 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-import zope.interface
+import z3c.pagelet.zcml
 import zope.component
-import zope.schema
 import zope.configuration.fields
+import zope.interface
+import zope.schema
 import zope.security.checker
 import zope.security.zcml
-from zope.configuration.exceptions import ConfigurationError
-from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-
+from zope.browserpage.metaconfigure import _handle_allowed_attributes
+from zope.browserpage.metaconfigure import _handle_allowed_interface
 from zope.browserpage.metaconfigure import _handle_for
 from zope.browserpage.metaconfigure import _handle_permission
-from zope.browserpage.metaconfigure import _handle_allowed_interface
-from zope.browserpage.metaconfigure import _handle_allowed_attributes
-
-import z3c.pagelet.zcml
+from zope.configuration.exceptions import ConfigurationError
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 from z3c.wizard import interfaces
 from z3c.wizard import step

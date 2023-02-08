@@ -11,11 +11,11 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.app.pagetemplate import metaconfigure
-from zope.app.testing import setup
 import z3c.macro.tales
 import zope.i18n.interfaces
 import zope.i18n.negotiator
+from zope.app.pagetemplate import metaconfigure
+from zope.app.testing import setup
 
 
 ###############################################################################

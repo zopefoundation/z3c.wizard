@@ -13,12 +13,12 @@
 ##############################################################################
 import zope.i18nmessageid
 import zope.interface
-import zope.schema
 import zope.location.interfaces
-
-from z3c.form import interfaces
+import zope.schema
 from z3c.form import button
+from z3c.form import interfaces
 from z3c.pagelet.interfaces import IPagelet
+
 
 _ = zope.i18nmessageid.MessageFactory('z3c')
 

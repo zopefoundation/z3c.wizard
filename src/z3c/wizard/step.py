@@ -12,13 +12,13 @@
 #
 ##############################################################################
 import zope.component
-import zope.interface
 import zope.event
+import zope.interface
 import zope.lifecycleevent
-
-from z3c.form.interfaces import IDataManager
 from z3c.form import button
+from z3c.form.interfaces import IDataManager
 from z3c.formui import form
+
 from z3c.wizard import interfaces
 from z3c.wizard.interfaces import _
 

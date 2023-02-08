@@ -13,16 +13,18 @@
 ##############################################################################
 """Wizard button actions implementation."""
 
-from zope.interface.verify import verifyObject, verifyClass
-from zope.publisher.browser import TestRequest
 import doctest
 import unittest
+
 import zope.interface
+from zope.interface.verify import verifyClass
+from zope.interface.verify import verifyObject
+from zope.publisher.browser import TestRequest
 
 from z3c.wizard import interfaces
-from z3c.wizard import wizard
 from z3c.wizard import step
 from z3c.wizard import testing
+from z3c.wizard import wizard
 
 
 class IContentStub(zope.interface.Interface):
