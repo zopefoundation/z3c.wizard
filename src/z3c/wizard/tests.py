@@ -13,16 +13,18 @@
 ##############################################################################
 """Wizard button actions implementation."""
 
-from zope.interface.verify import verifyObject, verifyClass
-from zope.publisher.browser import TestRequest
 import doctest
 import unittest
+
 import zope.interface
+from zope.interface.verify import verifyClass
+from zope.interface.verify import verifyObject
+from zope.publisher.browser import TestRequest
 
 from z3c.wizard import interfaces
-from z3c.wizard import wizard
 from z3c.wizard import step
 from z3c.wizard import testing
+from z3c.wizard import wizard
 
 
 class IContentStub(zope.interface.Interface):
@@ -30,7 +32,7 @@ class IContentStub(zope.interface.Interface):
 
 
 @zope.interface.implementer(IContentStub)
-class ContentStub(object):
+class ContentStub:
     """Content stub."""
 
     def values(self):
@@ -47,7 +49,7 @@ class WizardTestClass(wizard.Wizard):
     baseURL = '#'
 
     def __init__(self, context, request):
-        super(WizardTestClass, self).__init__(context, request)
+        super().__init__(context, request)
         self.step = StepTestClass(context, request, self)
         self.step.__name__ = 'first'
         self.step.__parent__ = self
@@ -102,6 +104,6 @@ def test_suite():
             'zcml.rst',
             setUp=testing.setUp, tearDown=testing.tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,),
-        unittest.makeSuite(TestStep),
-        unittest.makeSuite(TestWizard),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestStep),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestWizard),
     ))

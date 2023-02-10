@@ -11,21 +11,19 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-import zope.interface
+import z3c.pagelet.zcml
 import zope.component
-import zope.schema
 import zope.configuration.fields
+import zope.interface
+import zope.schema
 import zope.security.checker
 import zope.security.zcml
-from zope.configuration.exceptions import ConfigurationError
-from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-
+from zope.browserpage.metaconfigure import _handle_allowed_attributes
+from zope.browserpage.metaconfigure import _handle_allowed_interface
 from zope.browserpage.metaconfigure import _handle_for
 from zope.browserpage.metaconfigure import _handle_permission
-from zope.browserpage.metaconfigure import _handle_allowed_interface
-from zope.browserpage.metaconfigure import _handle_allowed_attributes
-
-import z3c.pagelet.zcml
+from zope.configuration.exceptions import ConfigurationError
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 from z3c.wizard import interfaces
 from z3c.wizard import step
@@ -48,49 +46,49 @@ class IWizardStepDirective(zope.interface.Interface):
     """
 
     name = zope.schema.TextLine(
-        title=u"The name of the pagelet.",
-        description=u"The name shows up in URLs/paths. For example 'foo'.",
+        title="The name of the pagelet.",
+        description="The name shows up in URLs/paths. For example 'foo'.",
         required=True)
 
     class_ = zope.configuration.fields.GlobalObject(
-        title=u"Class",
-        description=u"A class that provides attributes used by the pagelet.",
+        title="Class",
+        description="A class that provides attributes used by the pagelet.",
         required=True)
 
     permission = zope.security.zcml.Permission(
-        title=u"Permission",
-        description=u"The permission needed to use the pagelet.",
+        title="Permission",
+        description="The permission needed to use the pagelet.",
         required=True)
 
     for_ = zope.configuration.fields.GlobalObject(
-        title=u"Context",
-        description=u"The content interface or class this pagelet is for.",
+        title="Context",
+        description="The content interface or class this pagelet is for.",
         required=False)
 
     layer = zope.configuration.fields.GlobalInterface(
-        title=u"The layer the view is in.",
-        description=u"""
+        title="The layer the view is in.",
+        description="""
         A skin is composed of layers. It is common to put skin
         specific views in a layer named after the skin. If the 'layer'
         attribute is not supplied, it defaults to 'default'.""",
         required=False)
 
     wizard = zope.configuration.fields.GlobalObject(
-        title=u"Wizard",
-        description=u"The wizard interface or class this step is for.",
+        title="Wizard",
+        description="The wizard interface or class this step is for.",
         required=False)
 
     provides = zope.configuration.fields.GlobalInterface(
-        title=u"The interface this pagelets provides.",
-        description=u"""
+        title="The interface this pagelets provides.",
+        description="""
         A pagelet can provide an interface.  This would be used for
         views that support other views.""",
         required=False,
         default=interfaces.IPagelet)
 
     allowed_interface = zope.configuration.fields.Tokens(
-        title=u"Interface that is also allowed if user has permission.",
-        description=u"""
+        title="Interface that is also allowed if user has permission.",
+        description="""
         By default, 'permission' only applies to viewing the view and
         any possible sub views. By specifying this attribute, you can
         make the permission also apply to everything described in the
@@ -102,9 +100,9 @@ class IWizardStepDirective(zope.interface.Interface):
         value_type=zope.configuration.fields.GlobalInterface())
 
     allowed_attributes = zope.configuration.fields.Tokens(
-        title=u"View attributes that are also allowed if the user"
-              u" has permission.",
-        description=u"""
+        title="View attributes that are also allowed if the user"
+              " has permission.",
+        description="""
         By default, 'permission' only applies to viewing the view and
         any possible sub views. By specifying 'allowed_attributes',
         you can make the permission also apply to the extra attributes

@@ -13,12 +13,12 @@
 ##############################################################################
 import zope.i18nmessageid
 import zope.interface
-import zope.schema
 import zope.location.interfaces
-
-from z3c.form import interfaces
+import zope.schema
 from z3c.form import button
+from z3c.form import interfaces
 from z3c.pagelet.interfaces import IPagelet
+
 
 _ = zope.i18nmessageid.MessageFactory('z3c')
 
@@ -54,74 +54,74 @@ class IStep(interfaces.IForm, IPagelet):
     """An interface marking a step sub-form."""
 
     available = zope.schema.Bool(
-        title=u'Available',
-        description=u'Marker for available step',
+        title='Available',
+        description='Marker for available step',
         default=True,
         required=False)
 
     visible = zope.schema.Bool(
-        title=u'Show step in wizard step menu',
-        description=u'Show step in wizard step menu',
+        title='Show step in wizard step menu',
+        description='Show step in wizard step menu',
         default=True,
         required=False)
 
     showRequired = zope.schema.Bool(
-        title=u'Show required label',
-        description=u'Show required label',
+        title='Show required label',
+        description='Show required label',
         default=True,
         required=False)
 
     weight = zope.schema.Int(
-        title=u'Step weight in wizard',
-        description=u'Step weight in wizard',
+        title='Step weight in wizard',
+        description='Step weight in wizard',
         default=0,
         required=False)
 
     completed = zope.schema.Bool(
-        title=u'Completed',
-        description=u'Marker for completed step',
+        title='Completed',
+        description='Marker for completed step',
         default=False,
         required=False)
 
     handleApplyOnBack = zope.schema.Bool(
-        title=u'Handle apply changes on back',
-        description=u'Handle apply changes on back will force validation',
+        title='Handle apply changes on back',
+        description='Handle apply changes on back will force validation',
         default=False,
         required=False)
 
     handleApplyOnNext = zope.schema.Bool(
-        title=u'Handle apply changes on next',
-        description=u'Handle apply changes on next will force validation',
+        title='Handle apply changes on next',
+        description='Handle apply changes on next will force validation',
         default=True,
         required=False)
 
     handleApplyOnComplete = zope.schema.Bool(
-        title=u'Handle apply changes on complete',
-        description=u'Handle apply changes on complete will force validation',
+        title='Handle apply changes on complete',
+        description='Handle apply changes on complete will force validation',
         default=True,
         required=False)
 
     showSaveButton = zope.schema.Bool(
-        title=u'Show save button',
-        description=u'Show save button',
+        title='Show save button',
+        description='Show save button',
         default=True,
         required=False)
 
     showBackButton = zope.schema.Bool(
-        title=u'Show back button',
-        description=u'Back button condition',
+        title='Show back button',
+        description='Back button condition',
         default=True,
         required=False)
 
     showNextButton = zope.schema.Bool(
-        title=u'Show next button',
-        description=u'Next button condition',
+        title='Show next button',
+        description='Next button condition',
         default=True,
         required=False)
 
     showCompleteButton = zope.schema.Bool(
-        title=u'Show complete button',
-        description=u'Complete button condition',
+        title='Show complete button',
+        description='Complete button condition',
         default=True,
         required=False)
 
@@ -163,32 +163,32 @@ class IWizard(zope.location.interfaces.ILocation):
     """An interface marking the controlling wizard form."""
 
     firstStepAsDefault = zope.schema.Bool(
-        title=u'Show first step as default',
-        description=u'Show first step or first not completed step as default',
+        title='Show first step as default',
+        description='Show first step or first not completed step as default',
         default=True,
         required=True)
 
     adjustStep = zope.schema.Bool(
-        title=u'Adjust step',
-        description=u'Force fallback (redirect) to last incomplete step',
+        title='Adjust step',
+        description='Force fallback (redirect) to last incomplete step',
         default=True,
         required=False)
 
     confirmationPageName = zope.schema.ASCIILine(
-        title=u'Confirmation page name',
-        description=u'The confirmation page name shown after completed',
+        title='Confirmation page name',
+        description='The confirmation page name shown after completed',
         default=None,
         required=False)
 
     cssActive = zope.schema.ASCIILine(
-        title=u'Active step menu CSS class',
-        description=u'The active step menu CSS class',
+        title='Active step menu CSS class',
+        description='The active step menu CSS class',
         default='selected',
         required=False)
 
     cssInActive = zope.schema.ASCIILine(
-        title=u'In-Active step menu item CSS class',
-        description=u'The in-active step menu item CSS class',
+        title='In-Active step menu item CSS class',
+        description='The in-active step menu item CSS class',
         default=None,
         required=False)
 
@@ -200,37 +200,37 @@ class IWizard(zope.location.interfaces.ILocation):
     stepMenu = zope.interface.Attribute("""Step menu info.""")
 
     step = zope.schema.Object(
-        title=u'Current step',
-        description=u'Current step',
+        title='Current step',
+        description='Current step',
         schema=IStep)
 
     completed = zope.schema.Bool(
-        title=u'Completed',
-        description=u'Marker for completed step',
+        title='Completed',
+        description='Marker for completed step',
         default=False,
         required=False)
 
     isFirstStep = zope.schema.Bool(
-        title=u'Is first step',
-        description=u'Is first step',
+        title='Is first step',
+        description='Is first step',
         default=False,
         required=False)
 
     isLastStep = zope.schema.Bool(
-        title=u'Is last step',
-        description=u'Is last step',
+        title='Is last step',
+        description='Is last step',
         default=False,
         required=False)
 
     previousStepName = zope.schema.TextLine(
-        title=u'Previous step name',
-        description=u'Previous step name',
+        title='Previous step name',
+        description='Previous step name',
         default=None,
         required=False)
 
     nextStepName = zope.schema.TextLine(
-        title=u'Next step name',
-        description=u'Next step name',
+        title='Next step name',
+        description='Next step name',
         default=None,
         required=False)
 

@@ -13,11 +13,11 @@
 ##############################################################################
 import zope.component
 import zope.interface
+from z3c.form import button
+from z3c.formui import form
 from zope.publisher.interfaces import NotFound
 from zope.traversing.browser import absoluteURL
 
-from z3c.form import button
-from z3c.formui import form
 from z3c.wizard import interfaces
 from z3c.wizard.button import WizardButtonActions
 
@@ -160,7 +160,7 @@ class Wizard(form.Form):
                     'name': step.__name__,
                     'title': step.label,
                     'number': str(idx + 1),
-                    'url': '%s/%s' % (self.baseURL, step.__name__),
+                    'url': '{}/{}'.format(self.baseURL, step.__name__),
                     'selected': self.step.__name__ == step.__name__,
                     'class': cssClass,
                     'first': firstStep,
@@ -190,7 +190,7 @@ class Wizard(form.Form):
                 break
             if not step.completed:
                 # prepare redirect to not completed step and return True
-                self.nextURL = '%s/%s' % (self.baseURL, step.__name__)
+                self.nextURL = '{}/{}'.format(self.baseURL, step.__name__)
                 return True
         # or return False
         return False
@@ -226,7 +226,7 @@ class Wizard(form.Form):
         return self, (step.__name__,)
 
     def goToStep(self, stepName):
-        self.nextURL = '%s/%s' % (self.baseURL, stepName)
+        self.nextURL = '{}/{}'.format(self.baseURL, stepName)
 
     def goToBack(self):
         # redirect to next step if previous get sucessfuly processed
@@ -252,7 +252,7 @@ class Wizard(form.Form):
     def doFinish(self):
         """Force redirect after doComplete if confirmationPageName is given."""
         if self.confirmationPageName is not None:
-            self.nextURL = '%s/%s' % (
+            self.nextURL = '{}/{}'.format(
                 absoluteURL(self.context, self.request),
                 self.confirmationPageName)
 
@@ -272,4 +272,4 @@ class Wizard(form.Form):
         raise NotImplementedError('render is no supported')
 
     def __repr__(self):
-        return "<%s '%s'>" % (self.__class__.__name__, self.__name__)
+        return "<{} '{}'>".format(self.__class__.__name__, self.__name__)
