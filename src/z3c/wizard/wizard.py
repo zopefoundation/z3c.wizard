@@ -57,7 +57,6 @@ class Wizard(form.Form):
 
     # for internal use
     __name__ = None
-    steps = None
     step = None
 
     @property
